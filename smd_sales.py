@@ -29,8 +29,8 @@ def smd_sales():
 
             if sku_ws3.strip() in sku_ws2.strip():
                 # Update 'P' (ytd) in ws3
-                ws3[f'P{row_ws3}'].value = ws2[row_ws2 + 4][ytd_col].value
-                print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 4][ytd_col].value)
+                ws3[f'P{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value
+                print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value)
 
                 ws2_pointer = row_ws2 + 1
                 break  # Move to the next row in ws3 once a match is found
@@ -71,8 +71,8 @@ def smd_sales_holiday():
 
             if sku_ws3.strip() in sku_ws2.strip():
                 # Update 'N' (ytd) in ws3
-                ws3[f'N{row_ws3}'].value = ws2[row_ws2 + 4][ytd_col].value
-                print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 4][ytd_col].value)
+                ws3[f'N{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value
+                print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value)
 
                 ws2_pointer = row_ws2 + 1
                 break  # Move to the next row in ws3 once a match is found
