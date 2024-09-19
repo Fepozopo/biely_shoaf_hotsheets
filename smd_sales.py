@@ -2,7 +2,8 @@ import openpyxl
 
 
 def smd_sales():
-    print('Matching Sales...')
+    print('Updating everyday sales...')
+    print("ROW | SKU | YTD")
 
     wb2 = openpyxl.load_workbook('./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx')
     ws2 = wb2['Sheet1']
@@ -44,7 +45,8 @@ def smd_sales():
 
 
 def smd_sales_holiday():
-    print('Matching Sales Holiday...')
+    print('Updating holiday sales...')
+    print("ROW | SKU | YTD")
 
     wb2 = openpyxl.load_workbook('./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx')
     ws2 = wb2['Sheet1']
