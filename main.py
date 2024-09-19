@@ -48,8 +48,7 @@ def main():
                     #bsc_sales()
                     break
                 elif section.lower() == 'winter':
-                    pass
-                    #bsc_stock_winter()
+                    bsc_stock_winter()
                     #bsc_sales_winter()
                     #break
                 elif section.lower() == 'notecards':
@@ -64,7 +63,7 @@ def main():
                     #break
                 elif section.lower() == 'all':
                     bsc_stock()
-                    #bsc_stock_winter()
+                    bsc_stock_winter()
                     #bsc_stock_notecards()
                     #bsc_stock_spring()
                     #bsc_sales()

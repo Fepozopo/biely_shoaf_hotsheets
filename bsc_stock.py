@@ -54,7 +54,7 @@ def bsc_stock():
     wb3.close()
 
 
-def bsc_stock_holiday():
+def bsc_stock_winter():
     print('Updating holiday stock...')
     print("ROW | SKU | ON HAND | ON PO | ON SO/BO")
 
