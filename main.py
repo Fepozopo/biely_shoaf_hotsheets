@@ -8,50 +8,50 @@ start_time = datetime.now()
 
 
 def main():
-
-    # Get user input for whether to update the Shannon Martin Hotsheet
+    # Get user input for which hotsheet to update
     while True:
-        update_smd = input("Do you want to update the Shannon Martin Hotsheet? (y/n): ")
+        hotsheet = input("Which hotsheet do you want to update? (smd, bsc, 21c, exit): ")
 
-        if update_smd.lower() == 'y':
-
-            # Get user input for whether to update everyday product
+        if hotsheet.lower() == 'smd':
+            # Get user input for which season to update
             while True:
-                everyday_stock = input("Do you want to update everyday product? (y/n): ")
+                season = input("Which season do you want to update? (everyday, holiday, both, exit): ")
 
-                if everyday_stock.lower() == 'y':
+                if season.lower() == 'everyday':
                     smd_stock()
                     smd_sales()
                     break
-                elif everyday_stock.lower() == 'n':
-                    break
-                else:
-                    print("Invalid input. Please enter 'y' or 'n'.")
-
-            # Get user input for whether to update holiday product
-            while True:
-
-                holiday_stock = input("Do you want to update holiday product? (y/n): ")
-
-                if holiday_stock.lower() == 'y':
+                elif season.lower() == 'holiday':
                     smd_stock_holiday()
                     smd_sales_holiday()
                     break
-                elif holiday_stock.lower() == 'n':
+                elif season.lower() == 'both':
+                    smd_stock()
+                    smd_stock_holiday()
+                    smd_sales()
+                    smd_sales_holiday()
+                    break
+                elif season.lower() == 'exit':
                     break
                 else:
-                    print("Invalid input. Please enter 'y' or 'n'.")
-            break
-        elif update_smd.lower() == 'n':
+                    print("Invalid input. Please enter 'everyday', 'holiday', 'both', or 'exit'.")
+
+        # TODO: Add support for bsc
+        elif hotsheet.lower == 'bsc':
+            pass
+
+        # TODO: Add support for 21c
+        elif hotsheet.lower == '21c':
+            pass
+
+        elif hotsheet.lower() == 'exit':
             break
         else:
-            print("Invalid input. Please enter 'y' or 'n'.")
-
-    # Get user input for whether to update the Biely & Shoaf Hotsheet
+            print("Invalid input. Please enter 'smd', 'bsc', '21c', or 'exit'.")
 
 
-    time_elapsed = datetime.now() - start_time
-    print("Done!\nElapsed time: %s" % time_elapsed)
+        time_elapsed = datetime.now() - start_time
+        print("Done!\nElapsed time: %s" % time_elapsed)
     
 
 
