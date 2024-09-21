@@ -9,7 +9,6 @@ start_time = datetime.now()
 
 def main():
     # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
-    
     smd_stock = Update_Stock("./xlsx/SMD_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/SMD-IM_StockStatus.xlsx", 3, "E", "F", "I", "K")
     smd_stock_holiday = Update_Stock("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_StockStatus.xlsx", 2, "C", "D", "D", "H")
     bsc_stock = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "Everyday", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "D", "E", "F", "H")
