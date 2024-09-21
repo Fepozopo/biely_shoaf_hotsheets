@@ -41,7 +41,10 @@ class Update_Stock:
                     continue
                 
                 if sku_ws3.strip() in sku_ws1.strip():
-                    if ws1[row_ws1 + 2][on_hand_col].value is None:
+                    # Skip the first sku that contains "MPN48"
+                    if sku_ws1.strip() == "MPN48 BOX  HUMMINGBIRD BOX OF 10 NOTECARD":
+                        continue
+                    elif ws1[row_ws1 + 2][on_hand_col].value is None:
                         # Update (on_hand), (on_po), and (on_so, on_bo) in ws3
                         ws3[f'{self.on_hand}{row_ws3}'].value = ws1[row_ws1 + 1][on_hand_col].value
                         ws3[f'{self.on_po}{row_ws3}'].value = ws1[row_ws1 + 1][on_po_col].value
