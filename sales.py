@@ -21,6 +21,7 @@ class Update_Sales():
 
         sku_col = 0  # 'A' column index in ws2
         ytd_col = 18  # 'S' column index in ws2
+        kit_col = 9  # 'J' column index in ws2
         ws2_pointer = 1  # Start pointer for ws2
 
         for row_ws3 in range(self.start, ws3.max_row + 1):
@@ -36,9 +37,14 @@ class Update_Sales():
                     continue
 
                 if sku_ws3.strip() == sku_ws2.strip():
-                    # Update (ytd) in ws3
-                    ws3[f'{self.ytd}{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value
-                    print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value)
+                    if ws2[row_ws2 + 1][kit_col].value == "Kit":
+                        # Update (ytd) in ws3 * 10
+                        ws3[f'{self.ytd}{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value * 10
+                        print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value * 10)
+                    else:
+                        # Update (ytd) in ws3
+                        ws3[f'{self.ytd}{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value
+                        print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value)
 
                     ws2_pointer = row_ws2 + 1
                     break  # Move to the next row in ws3 once a match is found

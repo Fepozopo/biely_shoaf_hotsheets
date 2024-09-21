@@ -22,7 +22,7 @@ def main():
     smd_sales_holiday = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 2, "C", "N")
     bsc_sales = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Everyday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "K")
     #bsc_sales_winter = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "E", "L")
-    #bsc_sales_notecards = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "A2 Notecards", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
+    bsc_sales_notecards = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "A2 Notecards", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
     bsc_sales_spring = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Spring holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
     #c21_sales = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "M")
     #c21_sales_boxedcards = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "boxed card unit sales", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "H")
@@ -76,13 +76,15 @@ def main():
                 elif section.lower() == 'winter':
                     print('Updating winter holiday stock...')
                     bsc_stock_winter.update()
+                    #print('Updating winter holiday sales...')
                     #bsc_sales_winter.update()
                     break
                 elif section.lower() == 'notecards':
                     pass
                     print('Updating notecards stock...')
                     bsc_stock_notecards.update()
-                    #bsc_sales_notecards.update()
+                    print('Updating notecards sales...')
+                    bsc_sales_notecards.update()
                     break
                 elif section.lower() == 'spring':
                     pass
@@ -102,8 +104,10 @@ def main():
                     bsc_stock_spring.update()
                     print('Updating everyday sales...')
                     bsc_sales.update()
+                    #print('Updating winter holiday sales...')
                     #bsc_sales_winter.update()
-                    #bsc_sales_notecards.update()
+                    print('Updating notecards sales...')
+                    bsc_sales_notecards.update()
                     print('Updating spring holiday sales...')
                     bsc_sales_spring.update()
                     break
@@ -120,10 +124,12 @@ def main():
                 if section.lower() == 'everyday':
                     print('Updating everyday stock...')
                     c21_stock.update()
+                    #print('Updating everyday sales...')
                     #c21_sales.update()
                     break
                 elif section.lower() == 'boxedcards':
                     print('No stock kept...')
+                    #print('Updating boxedcards sales...')
                     #c21_sales_boxedcards.update()
                     break
                 elif section.lower() == 'exit':
