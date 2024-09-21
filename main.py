@@ -8,15 +8,22 @@ start_time = datetime.now()
 
 
 def main():
+    # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
+    
     smd_stock = Update_Stock("./xlsx/SMD_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/SMD-IM_StockStatus.xlsx", 3, "E", "F", "I", "K")
     smd_stock_holiday = Update_Stock("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_StockStatus.xlsx", 2, "C", "D", "D", "H")
-    smd_sales = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 3, "E", "P")
-    smd_sales_holiday = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 2, "C", "N")
     bsc_stock = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "Everyday", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "D", "E", "F", "H")
     bsc_stock_winter = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "E", "F", "I", "G")
+    bsc_stock_notecards = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "A2 Notecards", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "D", "F", "G", "I")
+    bsc_stock_spring = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "Spring holiday", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "D", "E", "H", "J")
 
+    # HOTSHEET | SECTION | REPORT | START | SKU | YTD
+    smd_sales = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 3, "E", "P")
+    smd_sales_holiday = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 2, "C", "N")
     bsc_sales = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Everyday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "K")
     #bsc_sales_winter = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "E", "L")
+    #bsc_sales_notecards = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "A2 Notecards", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
+    bsc_sales_spring = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Spring holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
 
     # Get user input for which hotsheet to update
     while True:
@@ -54,7 +61,7 @@ def main():
                 else:
                     print("Invalid input. Please enter 'everyday', 'holiday', 'all', or 'exit'.")
 
-        # TODO: Add support for bsc
+        # TODO: Finish support for bsc
         elif hotsheet.lower() == 'bsc':
             # Get user input for which sections to update
             while True:
@@ -69,30 +76,36 @@ def main():
                 elif section.lower() == 'winter':
                     print('Updating winter holiday stock...')
                     bsc_stock_winter.update()
-                    #bsc_sales_winter()
-                    #break
+                    #bsc_sales_winter.update()
+                    break
                 elif section.lower() == 'notecards':
                     pass
-                    #bsc_stock_notecards()
-                    #bsc_sales_notecards()
-                    #break
+                    print('Updating notecards stock...')
+                    bsc_stock_notecards.update()
+                    #bsc_sales_notecards.update()
+                    break
                 elif section.lower() == 'spring':
                     pass
-                    #bsc_stock_spring()
-                    #bsc_sales_spring()
-                    #break
+                    print('Updating spring holiday stock...')
+                    bsc_stock_spring.update()
+                    print('Updating spring holiday sales...')
+                    bsc_sales_spring.update()
+                    break
                 elif section.lower() == 'all':
                     print('Updating everyday stock...')
                     bsc_stock.update()
                     print('Updating winter holiday stock...')
                     bsc_stock_winter.update()
-                    #bsc_stock_notecards()
-                    #bsc_stock_spring()
+                    print('Updating notecards stock...')
+                    bsc_stock_notecards.update()
+                    print('Updating spring holiday stock...')
+                    bsc_stock_spring.update()
                     print('Updating everyday sales...')
                     bsc_sales.update()
-                    #bsc_sales_winter()
-                    #bsc_sales_notecards()
-                    #bsc_sales_spring()
+                    #bsc_sales_winter.update()
+                    #bsc_sales_notecards.update()
+                    print('Updating spring holiday sales...')
+                    bsc_sales_spring.update()
                     break
                 elif section.lower() == 'exit':
                     break
