@@ -38,9 +38,14 @@ class Update_Sales():
 
                 if sku_ws3.strip() == sku_ws2.strip():
                     if ws2[row_ws2 + 1][kit_col].value == "Kit":
-                        # Update (ytd) in ws3 * 10
-                        ws3[f'{self.ytd}{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value * 10
-                        print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value * 10)
+                        if "20-" in sku_ws2.strip() or "21-" in sku_ws2.strip() or "22-" in sku_ws2.strip() or "24-" in sku_ws2.strip():
+                            # Update (ytd) in ws3
+                            ws3[f'{self.ytd}{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value
+                            print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value)
+                        else:
+                            # Update (ytd) in ws3 * 10
+                            ws3[f'{self.ytd}{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value * 10
+                            print(row_ws3, "|", sku_ws3, "|", ws2[row_ws2 + 2][ytd_col].value * 10)
                     else:
                         # Update (ytd) in ws3
                         ws3[f'{self.ytd}{row_ws3}'].value = ws2[row_ws2 + 2][ytd_col].value

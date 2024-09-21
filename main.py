@@ -21,11 +21,12 @@ def main():
     smd_sales = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 3, "E", "P")
     smd_sales_holiday = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 2, "C", "N")
     bsc_sales = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Everyday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "K")
-    #bsc_sales_winter = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "E", "L")
+    bsc_sales_winter = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "E", "L")
+    bsc_sales_winter_kits = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday Kits", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "E", "L")
     bsc_sales_notecards = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "A2 Notecards", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
     bsc_sales_spring = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Spring holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
-    #c21_sales = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "M")
-    #c21_sales_boxedcards = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "boxed card unit sales", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "H")
+    c21_sales = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "M")
+    c21_sales_boxedcards = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "boxed card unit sales", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "H")
 
     # Get user input for which hotsheet to update
     while True:
@@ -62,7 +63,6 @@ def main():
                 else:
                     print("Invalid input. Please enter 'everyday', 'holiday', 'all', or 'exit'.")
 
-        # TODO: Finish support for bsc
         elif hotsheet.lower() == 'bsc':
             # Get user input for which sections to update
             while True:
@@ -76,8 +76,9 @@ def main():
                 elif section.lower() == 'winter':
                     print('Updating winter holiday stock...')
                     bsc_stock_winter.update()
-                    #print('Updating winter holiday sales...')
-                    #bsc_sales_winter.update()
+                    print('Updating winter holiday sales...')
+                    bsc_sales_winter.update()
+                    bsc_sales_winter_kits.update()
                     break
                 elif section.lower() == 'notecards':
                     pass
@@ -104,8 +105,9 @@ def main():
                     bsc_stock_spring.update()
                     print('Updating everyday sales...')
                     bsc_sales.update()
-                    #print('Updating winter holiday sales...')
-                    #bsc_sales_winter.update()
+                    print('Updating winter holiday sales...')
+                    bsc_sales_winter.update()
+                    bsc_sales_winter_kits.update()
                     print('Updating notecards sales...')
                     bsc_sales_notecards.update()
                     print('Updating spring holiday sales...')
@@ -116,7 +118,6 @@ def main():
                 else:
                     print("Invalid input. Please enter 'everyday', 'winter', 'notecards', 'spring', 'all', or 'exit'.")
 
-        # TODO: Finish support for 21c
         elif hotsheet.lower() == '21c':
             # Get user input for which sections to update
             while True:
@@ -124,13 +125,22 @@ def main():
                 if section.lower() == 'everyday':
                     print('Updating everyday stock...')
                     c21_stock.update()
-                    #print('Updating everyday sales...')
-                    #c21_sales.update()
+                    print('Updating everyday sales...')
+                    c21_sales.update()
                     break
                 elif section.lower() == 'boxedcards':
-                    print('No stock kept...')
-                    #print('Updating boxedcards sales...')
-                    #c21_sales_boxedcards.update()
+                    print('No stock kept for boxedcards...')
+                    print('Updating boxedcards sales...')
+                    c21_sales_boxedcards.update()
+                    break
+                elif section.lower() == 'all':
+                    print('Updating everyday stock...')
+                    c21_stock.update()
+                    print('No stock kept for boxedcards...')
+                    print('Updating everyday sales...')
+                    c21_sales.update()
+                    print('Updating boxedcards sales...')
+                    c21_sales_boxedcards.update()
                     break
                 elif section.lower() == 'exit':
                     break
