@@ -1,4 +1,4 @@
-import openpyxl
+import tkinter.filedialog
 from datetime import datetime
 from stock import Update_Stock
 from sales import Update_Sales
@@ -8,31 +8,28 @@ start_time = datetime.now()
 
 
 def main():
-    # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
-    smd_stock = Update_Stock("./xlsx/SMD_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/SMD-IM_StockStatus.xlsx", 3, "E", "F", "I", "K")
-    smd_stock_holiday = Update_Stock("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_StockStatus.xlsx", 2, "C", "D", "D", "H")
-    bsc_stock = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "Everyday", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "D", "E", "F", "H")
-    bsc_stock_winter = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "E", "F", "I", "G")
-    bsc_stock_notecards = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "A2 Notecards", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "D", "F", "G", "I")
-    bsc_stock_spring = Update_Stock("./xlsx/BSC_HOTSHEET.xlsx", "Spring holiday", "./xlsx/BSC-IM_StockStatus.xlsx", 2, "D", "E", "H", "J")
-    c21_stock = Update_Stock("./xlsx/21C_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/21C-IM_StockStatus.xlsx", 2, "C", "D", "E", "G")
-
-    # HOTSHEET | SECTION | REPORT | START | SKU | YTD
-    smd_sales = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 3, "E", "P")
-    smd_sales_holiday = Update_Sales("./xlsx/SMD_HOTSHEET.xlsx", "HOLIDAY", "./xlsx/SMD-IM_SalesAnalysisCondensed.xlsx", 2, "C", "N")
-    bsc_sales = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Everyday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "K")
-    bsc_sales_winter = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "E", "L")
-    bsc_sales_winter_kits = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Winter Holiday Kits", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "E", "L")
-    bsc_sales_notecards = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "A2 Notecards", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
-    bsc_sales_spring = Update_Sales("./xlsx/BSC_HOTSHEET.xlsx", "Spring holiday", "./xlsx/BSC-IM_SalesAnalysisCondensed.xlsx", 2, "D", "L")
-    c21_sales = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "EVERYDAY", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "M")
-    c21_sales_boxedcards = Update_Sales("./xlsx/21C_HOTSHEET.xlsx", "boxed card unit sales", "./xlsx/21C-IM_SalesAnalysisCondensed.xlsx", 2, "C", "H")
-
     # Get user input for which hotsheet to update
     while True:
         hotsheet = input("Which hotsheet do you want to update? (smd, bsc, 21c, exit): ")
 
         if hotsheet.lower() == 'smd':
+            # Select files
+            file_smd_hotsheet = tkinter.filedialog.askopenfilename(title='Select the SMD HOTSHEET...', filetypes=[("Excel", "*.xlsx")])
+            file_smd_stock_report = tkinter.filedialog.askopenfilename(title='Select the SMD Stock Report...', filetypes=[("Excel", "*.xlsx")])
+            file_smd_sales_report = tkinter.filedialog.askopenfilename(title='Select the SMD Sales Report...', filetypes=[("Excel", "*.xlsx")])
+
+            # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
+            smd_stock = Update_Stock(file_smd_hotsheet, "EVERYDAY", file_smd_stock_report, 3, "E", "F", "I", "K")
+            smd_stock_holiday = Update_Stock(file_smd_hotsheet, "HOLIDAY", file_smd_stock_report, 2, "C", "D", "D", "H")
+            # HOTSHEET | SECTION | REPORT | START | SKU | YTD
+            smd_sales = Update_Sales(file_smd_hotsheet, "EVERYDAY", file_smd_sales_report, 3, "E", "P")
+            smd_sales_holiday = Update_Sales(file_smd_hotsheet, "HOLIDAY", file_smd_sales_report, 2, "C", "N")
+            
+            # Check if files were selected
+            if not file_smd_hotsheet or not file_smd_stock_report or not file_smd_sales_report:
+                print("One or more files were not selected. Please try again.")
+                continue
+
             # Get user input for which sections to update
             while True:
                 section = input("Which section do you want to update? (everyday, holiday, all, exit): ")
@@ -64,6 +61,28 @@ def main():
                     print("Invalid input. Please enter 'everyday', 'holiday', 'all', or 'exit'.")
 
         elif hotsheet.lower() == 'bsc':
+            # Select files
+            file_bsc_hotsheet = tkinter.filedialog.askopenfilename(title='Select the BSC HOTSHEET...', filetypes=[("Excel", "*.xlsx")])
+            file_bsc_stock_report = tkinter.filedialog.askopenfilename(title='Select the BSC Stock Report...', filetypes=[("Excel", "*.xlsx")])
+            file_bsc_sales_report = tkinter.filedialog.askopenfilename(title='Select the BSC Sales Report...', filetypes=[("Excel", "*.xlsx")])
+
+            # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
+            bsc_stock = Update_Stock(file_bsc_hotsheet, "Everyday", file_bsc_stock_report, 2, "D", "E", "F", "H")
+            bsc_stock_winter = Update_Stock(file_bsc_hotsheet, "Winter Holiday", file_bsc_stock_report, 2, "E", "F", "I", "G")
+            bsc_stock_notecards = Update_Stock(file_bsc_hotsheet, "A2 Notecards", file_bsc_stock_report, 2, "D", "F", "G", "I")
+            bsc_stock_spring = Update_Stock(file_bsc_hotsheet, "Spring holiday", file_bsc_stock_report, 2, "D", "E", "H", "J")
+            # HOTSHEET | SECTION | REPORT | START | SKU | YTD
+            bsc_sales = Update_Sales(file_bsc_hotsheet, "Everyday", file_bsc_sales_report, 2, "D", "K")
+            bsc_sales_winter = Update_Sales(file_bsc_hotsheet, "Winter Holiday", file_bsc_sales_report, 2, "E", "L")
+            bsc_sales_winter_kits = Update_Sales(file_bsc_hotsheet, "Winter Holiday Kits", file_bsc_sales_report, 2, "E", "L")
+            bsc_sales_notecards = Update_Sales(file_bsc_hotsheet, "A2 Notecards", file_bsc_sales_report, 2, "D", "L")
+            bsc_sales_spring = Update_Sales(file_bsc_hotsheet, "Spring holiday", file_bsc_sales_report, 2, "D", "L")
+
+            # Check if files were selected
+            if not file_bsc_hotsheet or not file_bsc_stock_report or not file_bsc_sales_report:
+                print("One or more files were not selected. Please try again.")
+                continue
+
             # Get user input for which sections to update
             while True:
                 section = input("Which section do you want to update? (everyday, winter, notecards, spring, all, exit): ")
@@ -119,6 +138,22 @@ def main():
                     print("Invalid input. Please enter 'everyday', 'winter', 'notecards', 'spring', 'all', or 'exit'.")
 
         elif hotsheet.lower() == '21c':
+            # Select files
+            file_c21_hotsheet = tkinter.filedialog.askopenfilename(title='Select the C21 HOTSHEET...', filetypes=[("Excel", "*.xlsx")])
+            file_c21_stock_report = tkinter.filedialog.askopenfilename(title='Select the C21 Stock Report...', filetypes=[("Excel", "*.xlsx")])
+            file_c21_sales_report = tkinter.filedialog.askopenfilename(title='Select the C21 Sales Report...', filetypes=[("Excel", "*.xlsx")])
+
+            # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
+            c21_stock = Update_Stock(file_c21_hotsheet, "EVERYDAY", file_c21_stock_report, 2, "C", "D", "E", "G")
+            # HOTSHEET | SECTION | REPORT | START | SKU | YTD
+            c21_sales = Update_Sales(file_c21_hotsheet, "EVERYDAY", file_c21_sales_report, 2, "C", "M")
+            c21_sales_boxedcards = Update_Sales(file_c21_hotsheet, "boxed card unit sales", file_c21_sales_report, 2, "C", "H")
+
+            # Check if files were selected
+            if not file_c21_hotsheet or not file_c21_stock_report or not file_c21_sales_report:
+                print("One or more files were not selected. Please try again.")
+                continue
+
             # Get user input for which sections to update
             while True:
                 section = input("Which section do you want to update? ('everyday', 'boxedcards', all, 'exit): ")
