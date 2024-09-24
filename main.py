@@ -20,7 +20,7 @@ def main():
 
             # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
             smd_stock = Update_Stock(file_smd_hotsheet, "EVERYDAY", file_smd_stock_report, 3, "E", "F", "I", "K")
-            smd_stock_holiday = Update_Stock(file_smd_hotsheet, "HOLIDAY", file_smd_stock_report, 2, "C", "D", "D", "H")
+            smd_stock_holiday = Update_Stock(file_smd_hotsheet, "HOLIDAY", file_smd_stock_report, 2, "C", "D", "F", "H")
             # HOTSHEET | SECTION | REPORT | START | SKU | YTD
             smd_sales = Update_Sales(file_smd_hotsheet, "EVERYDAY", file_smd_sales_report, 3, "E", "P")
             smd_sales_holiday = Update_Sales(file_smd_hotsheet, "HOLIDAY", file_smd_sales_report, 2, "C", "N")
