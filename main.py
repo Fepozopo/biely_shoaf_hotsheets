@@ -139,9 +139,9 @@ def main():
 
         elif hotsheet.lower() == '21c':
             # Select files
-            file_c21_hotsheet = tkinter.filedialog.askopenfilename(title='Select the C21 HOTSHEET...', filetypes=[("Excel", "*.xlsx")])
-            file_c21_stock_report = tkinter.filedialog.askopenfilename(title='Select the C21 Stock Report...', filetypes=[("Excel", "*.xlsx")])
-            file_c21_sales_report = tkinter.filedialog.askopenfilename(title='Select the C21 Sales Report...', filetypes=[("Excel", "*.xlsx")])
+            file_c21_hotsheet = tkinter.filedialog.askopenfilename(title='Select the 21c HOTSHEET...', filetypes=[("Excel", "*.xlsx")])
+            file_c21_stock_report = tkinter.filedialog.askopenfilename(title='Select the 21c Stock Report...', filetypes=[("Excel", "*.xlsx")])
+            file_c21_sales_report = tkinter.filedialog.askopenfilename(title='Select the 21c Sales Report...', filetypes=[("Excel", "*.xlsx")])
 
             # HOTSHEET | SECTION | REPORT | START | SKU | ON HAND | ON PO | ON SO/BO
             c21_stock = Update_Stock(file_c21_hotsheet, "EVERYDAY", file_c21_stock_report, 2, "C", "D", "E", "G")
